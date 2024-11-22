@@ -27,8 +27,13 @@ eksctl update cluster -f eks-cluster.yml
 9. Concept on kubernetes
 ```text
 greek word kubernetes means helmsman or pilot
-in shor called as k8s - 8 word from k to s
+in short called as k8s - 8 word from k to s
 open source project by google in 2014
 bundles and runs applications
 ```
+10. features
+- service discovery and loadbalancing - expose service, as well as load balance 
+- storage orchestration - mount storage 
+- automated rollouts - create/remove containers
+- automated bin packing - how much cpu ram each container needs
 
