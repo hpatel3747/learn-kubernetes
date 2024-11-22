@@ -43,6 +43,9 @@ bundles and runs applications
 
 11. similar to VM container has its own filesystem, cpu and memory, considered as lightweight
 12. kubernetes architecture (https://kubernetes.io/docs/concepts/overview/components/)
+## Screenshots
+
+![App Screenshot](https://kubernetes.io/docs/concepts/overview/components/)
 - control plane, cloud provide api
 - Node1 -- container1, container2,..
 - Node2
