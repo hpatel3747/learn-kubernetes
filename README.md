@@ -98,6 +98,12 @@ kubectl delete -f 01-pod.yml
 kubectl apply -f 02-pod.yml
 ```
 24. container running in kubernetes is called container run time, which is different than docker container which run containerd
-25. ReplicaSet - make sure specified numner of identical pods are always running
-26. labels are key-value pairs to organiza objects, use Selectors to indentify a group of objects after specifiying labels
-27. 
+25. ReplicaSet - make sure specified number of identical pods are always running
+26. labels are key-value pairs to organize objects, use Selectors to indentify a group of objects after specifiying labels
+27. create replicaset
+```text
+kubectl apply -f 03-rs.yml
+```
+```text
+kubectl get rs
+```
