@@ -24,3 +24,11 @@ eksctl update cluster -f eks-cluster.yml
 ```
 
 8. overview of kubernetes - http://kubernetes.io
+9. Concept on kubernetes
+```text
+greek word kubernetes means helmsman or pilot
+in shor called as k8s - 8 word from k to s
+open source project by google in 2014
+bundles and runs applications
+```
+
