@@ -36,4 +36,16 @@ bundles and runs applications
 - storage orchestration - mount storage 
 - automated rollouts - create/remove containers
 - automated bin packing - how much cpu ram each container needs
+- self-healing
+- scaling
+- batch execution is supported
+- can be feed from hashi vault
+
+11. similar to VM container has its own filesystem, cpu and memory, considered as lightweight
+12. kubernetes architecture (https://kubernetes.io/docs/concepts/overview/components/)
+- control plane, cloud provide api
+- Node1 -- container1, container2,..
+- Node2
+- Node3
+- Nodes are in cluster
 
