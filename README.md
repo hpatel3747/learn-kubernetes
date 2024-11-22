@@ -77,4 +77,19 @@ kubectl delete pod demo
 - metadata
 - spec
 18. checkout file 01-pod.yml
-19. 
+19. deploy pod1 
+```text
+kubectl apply -f 01-pod.yml
+```
+```text
+kubectl get pods
+```
+20. Install k9s utility on workstation
+```text
+sudo labauto k9s
+```
+21. type k9s to open k9s interface, :pod will show all the pods running, :exit to exit
+22. delete demo pod
+```text
+kubectl delete -f 01-pod.yml
+```
