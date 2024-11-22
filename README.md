@@ -19,3 +19,8 @@ sudo mv /tmp/eksctl /usr/local/bin
 cd learn-kubernetes
 eksctl create cluster -f eks-cluster.yml
 ```
+```text
+eksctl update cluster -f eks-cluster.yml
+```
+
+8. overview of kubernetes - http://kubernetes.io
