@@ -115,3 +115,19 @@ show replica with labels
 ```text
 kubectl get rs --show-labels
 ```
+this will bring up only one replica
+```text
+kubectl scale rs frontend --replicas=1
+```
+this will bring up 20 replicas
+```text
+kubectl scale rs frontend --replicas=20
+```
+this will delete 19 replicas to bring it down to 1 replica
+```text
+kubectl scale rs frontend --replicas=1
+```
+show all the replica with certain label
+```text
+kubectl get rs -l tier=frontend
+```
