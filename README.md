@@ -133,4 +133,4 @@ kubectl get rs -l tier=frontend
 ```
 28. If you need to update nginx version, update .yml file and apply, but it will not update version, and so kubernetes came up with concept called deployments
 - deployment manages set of pods and application that does not maintain sate
- 
+- when we apply new version, it will create new replica with updated version and terminate old one 
