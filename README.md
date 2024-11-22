@@ -111,3 +111,7 @@ to see name and short names of resources
 ```text
 kubectl api-resource
 ```
+show replica with labels
+```text
+kubectl get rs --show-labels
+```
