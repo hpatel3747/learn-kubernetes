@@ -48,4 +48,31 @@ bundles and runs applications
 - Node2
 - Node3
 - Nodes are in cluster
-
+- API serer is backbone of kubernetes, holds lots of APIs, nodes etc foes thru API calls
+- Kubernetes is cloud agnostics
+- kubectl is native tool used to talk to api
+- GI is kubernetesUI
+- k9s is another such utility
+13. Install kubectl on workstation
+```text
+sudo yum install -y kubectl
+sudo labauto kubectl
+kubectl version
+```
+14. POD is smallest deployable unit
+15. POD is logical group of containers
+16. creating pod
+```text
+kubectl run demo --image=nginx
+```
+```text
+kubectl get pods
+```
+```text
+kubectl delete pod demo
+```
+17. reference for pods
+- apiversion
+- kind
+- metadata
+- spec
