@@ -76,3 +76,5 @@ kubectl delete pod demo
 - kind
 - metadata
 - spec
+18. checkout file 01-pod.yml
+19. 
