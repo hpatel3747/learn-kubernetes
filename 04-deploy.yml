@@ -20,6 +20,6 @@ spec:
           ports:
             - containerPort: 80
         - name: debug
-          image: rkalluru/debug
+          image: nginx:1.17
           ports:
             - containerPort: 80
