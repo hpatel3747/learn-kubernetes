@@ -6,4 +6,27 @@ metadata:
     app: guestbook
     tier: frontend
   spec:
-    replicas:
+    replicas: 1
+    selector:
+      matchLabels:
+        tier: frontend
+    template:
+      metadata:
+        labels:
+          tier: frontend
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:1.26
+---
+  kind: Pod
+  apiVersion: v1
+  metadata:
+    name: demo
+    labelS:
+      tier: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+
