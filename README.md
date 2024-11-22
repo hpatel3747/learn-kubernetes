@@ -107,3 +107,7 @@ kubectl apply -f 03-rs.yml
 ```text
 kubectl get rs
 ```
+to see name and short names of resources
+```text
+kubectl api-resource
+```
