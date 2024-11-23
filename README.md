@@ -62,9 +62,9 @@ sudo yum install -y kubectl
 sudo labauto kubectl
 kubectl version
 ```
-14. POD is smallest deployable unit
-15. POD is logical group of containers
-16. creating pod
+POD is smallest deployable unit
+POD is logical group of containers
+Creating pod
 ```text
 kubectl run demo --image=nginx
 ```
