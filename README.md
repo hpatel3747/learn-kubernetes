@@ -64,7 +64,7 @@ kubectl version
 ```
 POD is smallest deployable unit
 POD is logical group of containers
-Creating pod
+- Creating pod
 ```text
 kubectl run demo --image=nginx
 ```
