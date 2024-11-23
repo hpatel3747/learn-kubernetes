@@ -42,8 +42,8 @@ bundles and runs applications
 - can be feed from hashi vault
 
 11. similar to VM container has its own filesystem, cpu and memory, considered as lightweight
-12. kubernetes architecture (https://kubernetes.io/docs/concepts/overview/components/)
-## Screenshots
+12. kubernetes architecture
+## Kubernetes Arch Components
 
 ![Kubernetes Arch Components](https://github.com/hpatel3747/learn-kubernetes/blob/main/kubernetes-arch.jpg)
 - control plane, cloud provide api
