@@ -74,13 +74,13 @@ kubectl get pods
 ```text
 kubectl delete pod demo
 ```
-17. reference for pods
+18. reference for pods
 - apiversion
 - kind
 - metadata
 - spec
-18. checkout file 01-pod.yml
-19. deploy pod1 
+checkout file 01-pod.yml
+20. deploy pod1 
 ```text
 kubectl apply -f 01-pod.yml
 ```
