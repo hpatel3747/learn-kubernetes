@@ -45,7 +45,7 @@ bundles and runs applications
 12. kubernetes architecture (https://kubernetes.io/docs/concepts/overview/components/)
 ## Screenshots
 
-![App Screenshot](https://kubernetes.io/docs/concepts/overview/components/)
+![Kubernetes Arch Components](https://github.com/hpatel3747/learn-kubernetes/blob/main/kubernetes-arch.jpg)
 - control plane, cloud provide api
 - Node1 -- container1, container2,..
 - Node2
