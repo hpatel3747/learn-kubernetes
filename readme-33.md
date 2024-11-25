@@ -8,4 +8,4 @@ deployments are one level above replicaset, you can maintain state, update versi
 - **Concept of Stateful application:** means it maintains state, e.g if container is down, application will be down, replicaset will create new replica of the pod and reconnect clients to the app on new container, that's how it maintains the state
 
 #### creating stateful sets (05-statefulset.yml)
-
+-create pods and maintains sticky identity for each pods
