@@ -6,13 +6,13 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  serviceName: "nginx"  # has to match .spec.template.metadata.labels, headless service named nginx is used to control network domain
+  serviceName: "nginx"
   replicas: 3 #
   minReadySeconds: 10
   template:
     metadata:
       labels:
-        app: nginx  # has to match .spec.selector.matchLabels
+        app: nginx
     spec:
       terminationGracePeriodSeconds: 10
       containers:
@@ -26,7 +26,7 @@ spec:
               mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
     - metadata:
-        name: www # volumeClaimTemplates(name), provides stable storage
+        name: www # volumeClaimTemplates(name)
       spec:
         accessModes: [ "ReadWriteOnce" ]
         storageClassName: "gp2"
