@@ -8,5 +8,5 @@ spec:
       containers:
         - name: redhat
           image: redhat/ubi9
-          command: ["sleep", "10"]
-          restartPolicy: Never
+          command: ["sleep",  "10"]
+      restartPolicy: Never
