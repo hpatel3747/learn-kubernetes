@@ -10,3 +10,4 @@ managedNodeGroups:
   - name: ng-1
     desiredCapacity: 1
     spot: true
+    instanceType: t3.medium
