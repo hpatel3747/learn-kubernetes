@@ -33,3 +33,8 @@ spec:
         resources:
           requests:
             storage: 1Gi
+# each three replicaset (pods) will have persistent volume type gp2 size 1 gb attached and mounted on path /usr/share/nginx/html
+# followings are 2 prerequisites
+# you need to add Amazon EBS CSI driver as add-on so that pod can create ebs volume
+# Also, you need to assign AmazonEBSCSIDrivePolicy permission (in aws assigning permission means attaching policy) to role "eksctl-practice-nodegroup-ng-1-NodeInstanceRole"
+
