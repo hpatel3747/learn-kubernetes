@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-09
+data:
+  URL: google.com
+  FQDN: www.google.com
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-debug
+spec:
+  containers:
+    - name: debug
+      image: rkalluru/debug
+      env:
+        - name: URL
+          value: yahoo.com
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-debug-cm
+spec:
+  containers:
+    - name: debug
+      image: rkalluru/debug
+      envFrom:
+        - configMapRef:
+            name: cm-09
+
+
+
+
+
+
+
