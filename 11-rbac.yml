@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app1
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app2
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-sec1
+data:
+  APP1_PASSWORD: QWJjZEAxMjM0
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-sec2
+data:
+  APP2_PASSWORD: eHl6QDMyMQ==
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: app1-role
+rules:
+  - apiGroups: ["*"]
+    resources: ["secrets"]
+    resourceNames: ["app-sec1"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: app2-role
+rules:
+  - apiGroups: ["v1"]
+    resources: ["secrets"]
+    resourceNames: ["app-sec2"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app1-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: app1-role
+subjects:
+  - kind: ServiceAccount
+    name: app1
+    namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app2-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: app2-role
+subjects:
+  - kind: ServiceAccount
+    name: app2
+    namespace: default
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: debug-pod-01
+spec:
+  serviceAccountName: app1
+  containers:
+    - name: debug
+      image: rkalluru/debug
+      envFrom:
+        - secretRef:
+            name: app-sec1
+        - secretRef:
+            name: app-sec2
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: debug-pod-02
+spec:
+  serviceAccountName: app2
+  containers:
+    - name: debug
+      image: rkalluru/debug
+      envFrom:
+        - secretRef:
+            name: app-sec2
+
