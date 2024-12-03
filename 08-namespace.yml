@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-nginx-1
+  namespace: web
+  labels:
+    appName: app-nginx-1
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nginx-1
+  namespace: web
+spec:
+  type: ClusterIP
+  selector:
+    appName: app-nginx-1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-debug
+spec:
+  containers:
+    - name: debug
+      image: rkalluru/debug
