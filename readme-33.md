@@ -9,3 +9,6 @@ deployments are one level above replicaset, you can maintain state, update versi
 
 #### creating stateful sets (05-statefulset.yml)
 -create pods and maintains sticky identity for each pods
+
+#### kubernetes service
+- Service is a method for exposing a network application that is running as one or more Pods in your cluster
