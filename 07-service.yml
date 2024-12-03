@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: service-nginx-1
   labels:
-    appName: service-nginx-1
+    appName: app-nginx-1
 spec:
   containers:
     - name: nginx
@@ -16,7 +16,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    appName: service-nginx-1
+    appName: app-nginx-1
   ports:
     - protocol: TCP
       port: 80
@@ -38,7 +38,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    appName: service-nginx-1
+    appName: app-nginx-1
   ports:
     - protocol: TCP
       port: 80
@@ -51,7 +51,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    appName: service-nginx-1
+    appName: app-nginx-1
   ports:
     - protocol: TCP
       port: 80
