@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: service-nginx-1
+  name: pod-nginx-1
   labels:
     appName: app-nginx-1
 spec:
@@ -25,7 +25,7 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: debug
+  name: pod-debug
 spec:
   containers:
     - name: debug
@@ -60,7 +60,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-google
+  name: my-google-service
 spec:
   type: ExternalName
   externalName: www.google.com
