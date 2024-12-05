@@ -189,3 +189,183 @@ spec:
               value: "8080"
             - name: REDIS_HOST
               value: redis-dev.hptldevops.online
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart
+spec:
+  type: ClusterIP
+  selector:
+    app: cart
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+#deploy shipping
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  labels:
+    app: shipping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping
+  template:
+    metadata:
+      labels:
+        app: shipping
+    spec:
+      containers:
+        - name: shipping
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CART_ENDPOINT
+              value: "cart:8080"
+            - name: DB_HOST
+              value: mysql-dev.hptldevops.online
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+spec:
+  type: ClusterIP
+  selector:
+    app: shipping
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: shipping-schema-app-user
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.hptldevops.online
+            - name: SCHEMA_FILE
+              value: db/app-user.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: shipping-schema
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.hptldevops.online
+            - name: SCHEMA_FILE
+              value: db/schema.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: shipping-master-data
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.hptldevops.online
+            - name: SCHEMA_FILE
+              value: db/master-data.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
+      restartPolicy: Never
+---
+#deploy payment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    app: payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+        - name: payment
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CART_HOST
+              value: cart
+            - name: CART_PORT
+              value: "8080"
+            - name: USER_HOST
+              value: user
+            - name: USER_PORT
+              value: "8080"
+            - name: AMQP_HOST
+              value: rabbitmq-dev.hptldevops.online
+            - name: AMQP_USER
+              value: roboshop
+            - name: AMQP_PASS
+              value: roboshop123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+spec:
+  type: ClusterIP
+  selector:
+    app: payment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
