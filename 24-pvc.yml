@@ -1,0 +1,39 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-sc  # Name of the StorageClass
+provisioner: ebs.csi.aws.com  # EBS CSI provisioner
+parameters:
+  type: gp3  # EBS volume type (could be 'gp2', 'io1', 'st1', etc.)
+  fsType: ext4  # Filesystem type for the volume (usually 'ext4' or 'xfs')
+reclaimPolicy: Retain  # When the PVC is deleted, the PV is retained (alternative: Delete)
+volumeBindingMode: WaitForFirstConsumer  # Volume binding mode; can be Immediate or WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc  # Name of the PVC
+spec:
+  accessModes:
+    - ReadWriteOnce  # The access mode (single node read-write)
+  resources:
+    requests:
+      storage: 5Gi  # Request 5 GiB of storage
+  storageClassName: ebs-sc  # Reference the StorageClass you created
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-pvc
+spec:
+  containers:
+    - name: debug-container
+      image: rkalluru/debug  # Using the specified image
+      volumeMounts:
+        - mountPath: /app  # Mount the PVC to this path inside the container
+          name: app-volume  # Name of the volume that refers to the PVC
+  volumes:
+    - name: app-volume
+      persistentVolumeClaim:
+        claimName: my-pvc  # Reference to the PVC you created earlier
